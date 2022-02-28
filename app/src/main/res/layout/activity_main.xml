@@ -80,5 +80,18 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"/>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="146dp"
+            android:layout_height="39dp"
+
+            tools:layout_editor_absoluteX="116dp"
+            tools:layout_editor_absoluteY="636dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </RelativeLayout>

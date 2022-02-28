@@ -4,6 +4,10 @@ import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -34,6 +38,24 @@ class MainActivity : AppCompatActivity() {
         btnRoll.setOnClickListener { v -> onClickRoll() }
         btnClear.setOnClickListener { v -> onClickClear() }
         Log.d(TAG, "OnCreate")
+
+        val spinner = findViewById<Spinner>(R.id.spinner1)
+        val numbers = arrayOf("1", "2", "3", "4", "5", "6");
+
+        val arrayAdapter = ArrayAdapter(this@MainActivity, android.R.layout.simple_spinner_dropdown_item, numbers);
+        spinner.adapter = arrayAdapter;
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+            }
+
+        }
+
 
         //<editor-fold desc="Restore history">
         val orientation = this.getResources().getConfiguration().orientation
