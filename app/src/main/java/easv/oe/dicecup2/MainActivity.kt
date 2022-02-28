@@ -32,6 +32,9 @@ class MainActivity : AppCompatActivity() {
 
     private val mT = Texts()
 
+    var dices: Int = 0;
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -40,9 +43,9 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "OnCreate")
 
         val spinner = findViewById<Spinner>(R.id.spinner1)
-        val numbers = arrayOf("1", "2", "3", "4", "5", "6");
+        val numberOfDices = arrayOf("1", "2", "3", "4", "5", "6");
 
-        val arrayAdapter = ArrayAdapter(this@MainActivity, android.R.layout.simple_spinner_dropdown_item, numbers);
+        val arrayAdapter = ArrayAdapter(this@MainActivity, android.R.layout.simple_spinner_dropdown_item, numberOfDices);
         spinner.adapter = arrayAdapter;
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -50,8 +53,10 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                Toast.makeText(this@MainActivity, "You have selected ${adapterView?.getItemAtPosition(position).toString()}", Toast.LENGTH_SHORT).show()
 
+                dices = adapterView?.getItemAtPosition(position).toString().toInt();
             }
 
         }
