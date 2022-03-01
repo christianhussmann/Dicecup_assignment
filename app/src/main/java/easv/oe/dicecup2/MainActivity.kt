@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_matchhistory.*
+import kotlinx.android.synthetic.main.activity_matchactivity.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.tvHistory
 import java.util.*
@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private val HISTORY_NAME = "history"
 
+    private val REQUEST_CODE_ANSWER = 12
     private val TAG: String = "xyz"
 
     // mapping from 1..6 to drawables, the first index is unused
@@ -82,8 +83,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onClickSwitch() {
-        val i = Intent(this, MatchHistory::class.java)
+        val i = Intent(this, MatchActivity::class.java)
         i.putExtra("history", getHistory())
+        startActivityForResult(i, REQUEST_CODE_ANSWER)
     }
 
 
@@ -102,10 +104,6 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "Roll")
     }
 
-    private fun onClickClear() {
-        Log.d(TAG, "Clear")
-        mHistory.clear()
-    }
 
     // ensures that the history text aligns the history object
     private fun getHistory(): String {
@@ -130,5 +128,14 @@ class MainActivity : AppCompatActivity() {
     //</editor-fold>
 
 
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        val clearPressed = data?.extras?.getBoolean("cleared")
+        if (clearPressed == true) {
+            mHistory.clear()
+        }
+    }
 
 }
