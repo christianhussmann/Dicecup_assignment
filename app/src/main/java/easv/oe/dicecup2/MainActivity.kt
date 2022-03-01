@@ -128,13 +128,83 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateDicesWith(p: Triple<Int, Int, Int>) {
         when (dices) {
-            1 -> imgDice1.setImageResource(diceId[dicesNumber.first()]);
+            1 -> updateOneDice();
+            2 -> updateTwoDices();
+            3 -> updateThreeDices();
+            4 -> updateFourDices();
+            5 -> updateFiveDices();
+            6 -> updateSixDices();
         }
-        //imgDice1.setImageResource( diceId[p.first] )
-        imgDice2.setImageResource( diceId[p.second] )
-        imgDice3.setImageResource( diceId[p.third] )
     }
 
+    private fun updateOneDice() {
+        imgDice1.setImageResource(diceId[dicesNumber.first()]);
+        imgDice2.visibility = View.GONE;
+        imgDice3.visibility = View.GONE;
+        imgDice4.visibility = View.GONE;
+        imgDice5.visibility = View.GONE;
+        imgDice6.visibility = View.GONE;
+    }
+
+    private fun updateTwoDices() {
+        imgDice2.visibility = View.VISIBLE;
+        imgDice1.setImageResource(diceId[dicesNumber.first()]);
+        imgDice2.setImageResource(diceId[dicesNumber[1]]);
+        imgDice3.visibility = View.GONE;
+        imgDice4.visibility = View.GONE;
+        imgDice5.visibility = View.GONE;
+        imgDice6.visibility = View.GONE;
+    }
+
+    private fun updateThreeDices() {
+        imgDice2.visibility = View.VISIBLE;
+        imgDice3.visibility = View.VISIBLE;
+        imgDice1.setImageResource(diceId[dicesNumber.first()]);
+        imgDice2.setImageResource(diceId[dicesNumber[1]]);
+        imgDice3.setImageResource(diceId[dicesNumber[2]]);
+        imgDice4.visibility = View.GONE;
+        imgDice5.visibility = View.GONE;
+        imgDice6.visibility = View.GONE;
+    }
+
+    private fun updateFourDices() {
+        imgDice2.visibility = View.VISIBLE;
+        imgDice3.visibility = View.VISIBLE;
+        imgDice4.visibility = View.VISIBLE;
+        imgDice1.setImageResource(diceId[dicesNumber.first()]);
+        imgDice2.setImageResource(diceId[dicesNumber[1]]);
+        imgDice3.setImageResource(diceId[dicesNumber[2]]);
+        imgDice4.setImageResource(diceId[dicesNumber[3]]);
+        imgDice5.visibility = View.GONE;
+        imgDice6.visibility = View.GONE;
+    }
+
+    private fun updateFiveDices() {
+        imgDice2.visibility = View.VISIBLE;
+        imgDice3.visibility = View.VISIBLE;
+        imgDice4.visibility = View.VISIBLE;
+        imgDice5.visibility = View.VISIBLE;
+        imgDice1.setImageResource(diceId[dicesNumber.first()]);
+        imgDice2.setImageResource(diceId[dicesNumber[1]]);
+        imgDice3.setImageResource(diceId[dicesNumber[2]]);
+        imgDice4.setImageResource(diceId[dicesNumber[3]]);
+        imgDice5.setImageResource(diceId[dicesNumber[4]]);
+        imgDice6.visibility = View.GONE;
+    }
+
+    private fun updateSixDices() {
+        imgDice2.visibility = View.VISIBLE;
+        imgDice3.visibility = View.VISIBLE;
+        imgDice4.visibility = View.VISIBLE;
+        imgDice5.visibility = View.VISIBLE;
+        imgDice6.visibility = View.VISIBLE;
+        imgDice1.setImageResource(diceId[dicesNumber.first()]);
+        imgDice2.setImageResource(diceId[dicesNumber[1]]);
+        imgDice3.setImageResource(diceId[dicesNumber[2]]);
+        imgDice4.setImageResource(diceId[dicesNumber[3]]);
+        imgDice5.setImageResource(diceId[dicesNumber[4]]);
+        imgDice6.setImageResource(diceId[dicesNumber[5]]);
+    }
     //<editor-fold desc="onSaveInstanceState">
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
