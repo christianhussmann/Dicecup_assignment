@@ -36,8 +36,9 @@ class MainActivity : AppCompatActivity() {
 
     private val mT = Texts()
 
-    var dices: Int = 0;
+    private val dicesNumber = mutableListOf<Int>();
 
+    var dices: Int = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,12 +60,11 @@ class MainActivity : AppCompatActivity() {
 
             override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 Toast.makeText(this@MainActivity, "You have selected ${adapterView?.getItemAtPosition(position).toString()}", Toast.LENGTH_SHORT).show()
-
+                dicesNumber.clear();
                 dices = adapterView?.getItemAtPosition(position).toString().toInt();
             }
 
         }
-
 
         //<editor-fold desc="Restore history">
         val orientation = this.getResources().getConfiguration().orientation
@@ -93,6 +93,18 @@ class MainActivity : AppCompatActivity() {
         val e1 = mRandomGenerator.nextInt(6) + 1
         val e2 = mRandomGenerator.nextInt(6) + 1
         val e3 = mRandomGenerator.nextInt(6) + 1
+        val e4 = mRandomGenerator.nextInt(6) + 1
+        val e5 = mRandomGenerator.nextInt(6) + 1
+        val e6 = mRandomGenerator.nextInt(6) + 1
+
+        when (dices) {
+            1 -> dicesNumber.add(e1);
+            2 -> dicesNumber.addAll(listOf(e1, e2));
+            3 -> dicesNumber.addAll(listOf(e1, e2, e3));
+            4 -> dicesNumber.addAll(listOf(e1, e2, e3, e4));
+            5 -> dicesNumber.addAll(listOf(e1, e2, e3, e4, e5));
+            6 -> dicesNumber.addAll(listOf(e1, e2, e3, e4, e5, e6));
+        }
 
         val p = Triple(e1,e2,e3)
         //update history
