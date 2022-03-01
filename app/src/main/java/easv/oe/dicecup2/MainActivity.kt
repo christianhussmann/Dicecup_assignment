@@ -1,7 +1,7 @@
 package easv.oe.dicecup2
 
+import android.content.Intent
 import android.content.res.Configuration
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,7 +9,10 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_mHistory.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.tvHistory
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -40,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         btnRoll.setOnClickListener { v -> onClickRoll() }
         btnClear.setOnClickListener { v -> onClickClear() }
+        btnHistory.setOnClickListener{ v -> onClickSwitch()}
         Log.d(TAG, "OnCreate")
 
         val spinner = findViewById<Spinner>(R.id.spinner1)
@@ -78,6 +82,11 @@ class MainActivity : AppCompatActivity() {
         }
         //</editor-fold>
     }
+
+    private fun onClickSwitch() {
+        TODO("Not yet implemented")
+    }
+
 
     private fun onClickRoll(){
         val e1 = mRandomGenerator.nextInt(6) + 1
@@ -122,5 +131,7 @@ class MainActivity : AppCompatActivity() {
         outState.putSerializable(HISTORY_NAME, mHistory.toTypedArray())
     }
     //</editor-fold>
+
+
 
 }

@@ -83,10 +83,10 @@
         />
 
     <Button
-        android:id="@+id/btnClear"
+        android:id="@+id/btnHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Clear"
+        android:text="History"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"/>
 
