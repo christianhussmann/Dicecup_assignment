@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_mHistory.*
+import kotlinx.android.synthetic.main.activity_matchhistory.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.tvHistory
 import java.util.*
@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         btnRoll.setOnClickListener { v -> onClickRoll() }
-        btnClear.setOnClickListener { v -> onClickClear() }
         btnHistory.setOnClickListener{ v -> onClickSwitch()}
         Log.d(TAG, "OnCreate")
 
@@ -76,7 +75,6 @@ class MainActivity : AppCompatActivity() {
             Log.d(TAG, "saved state NOT null")
             val history = savedInstanceState.getSerializable(HISTORY_NAME) as Array<Triple<Int,Int,Int>>
             history.forEach { p -> mHistory.add(p) }
-            updateHistory()
             if (mHistory.size > 0)
                 updateDicesWith(mHistory[mHistory.size-1])
         }
@@ -84,7 +82,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onClickSwitch() {
-        TODO("Not yet implemented")
+        val i = Intent(this, MatchHistory::class.java)
+        i.putExtra("history", getHistory())
     }
 
 
@@ -100,21 +99,19 @@ class MainActivity : AppCompatActivity() {
         // set dices
         updateDicesWith(p)
         if (mHistory.size > 5) mHistory.removeAt(0)
-        updateHistory()
         Log.d(TAG, "Roll")
     }
 
     private fun onClickClear() {
         Log.d(TAG, "Clear")
         mHistory.clear()
-        updateHistory()
     }
 
     // ensures that the history text aligns the history object
-    private fun updateHistory() {
+    private fun getHistory(): String {
         var s = ""
         mHistory.forEach { p ->  val e1 = p.first; val e2 = p.second;val e3 = p.third; s += "$e1 - $e2 - $e3 \n" }
-        tvHistory.text = s
+        return s
     }
 
     private fun updateDicesWith(p: Triple<Int, Int, Int>) {
