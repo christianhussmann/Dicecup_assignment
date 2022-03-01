@@ -10,6 +10,8 @@ import kotlinx.android.synthetic.main.activity_matchactivity.*
 
 class MatchActivity : AppCompatActivity() {
 
+    val matchIntent = Intent()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_matchactivity)
@@ -19,15 +21,13 @@ class MatchActivity : AppCompatActivity() {
     }
 
     fun onClickCancel(view: View) {
-        setResult(RESULT_CANCELED)
+        setResult(RESULT_CANCELED, matchIntent)
         finish()
     }
 
     fun onClickClearHistory(view: View) {
         Log.d("CLEAR", "Clear")
         matchHistory.text = ""
-        val intent = Intent()
-        intent.putExtra("cleared", true)
-        setResult(RESULT_OK, intent)
+        matchIntent.putExtra("cleared", true)
     }
 }
