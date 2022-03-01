@@ -28,13 +28,14 @@
 
 
     </LinearLayout>
+
     <Button
         android:id="@+id/btnClear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Clear"
+        android:layout_below="@+id/layoutDices"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/layoutDices"/>
+        android:text="Clear" />
 
     <TextView
         android:id="@+id/tvHistory"
