@@ -90,6 +90,8 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun onClickRoll(){
+        dicesNumber.clear();
+
         val e1 = mRandomGenerator.nextInt(6) + 1
         val e2 = mRandomGenerator.nextInt(6) + 1
         val e3 = mRandomGenerator.nextInt(6) + 1
@@ -125,7 +127,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateDicesWith(p: Triple<Int, Int, Int>) {
-        imgDice1.setImageResource( diceId[p.first] )
+        when (dices) {
+            1 -> imgDice1.setImageResource(diceId[dicesNumber.first()]);
+        }
+        //imgDice1.setImageResource( diceId[p.first] )
         imgDice2.setImageResource( diceId[p.second] )
         imgDice3.setImageResource( diceId[p.third] )
     }
@@ -139,8 +144,6 @@ class MainActivity : AppCompatActivity() {
     }
     //</editor-fold>
 
-
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -149,5 +152,4 @@ class MainActivity : AppCompatActivity() {
             mHistory.clear()
         }
     }
-
 }
